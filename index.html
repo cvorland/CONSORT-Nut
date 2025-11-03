@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSORT-Nut</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Libraries for Word export -->
+    <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
+    <script src="https://unpkg.com/file-saver/dist/FileSaver.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Hide all pages by default */
+        .page-content {
+            display: none;
+        }
+        /* Show the active page */
+        .page-content.active {
+            display: block;
+        }
+        /* Style for the active navigation link */
+        .active-nav-link {
+            background-color: #1f2937; /* bg-gray-800 */
+            color: #ffffff;
+        }
+        .explanation-content {
+            display: none;
+        }
+        /* Styling for hyperlinks */
+        a {
+            color: #1d4ed8; /* blue-700 */
+            text-decoration: underline;
+            font-weight: 500; /* medium */
+        }
+        a:hover {
+            color: #1e40af; /* blue-800 */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h1 class="text-5xl font-bold text-gray-900">CONSORT-Nut</h1>
+            <p class="text-xl text-gray-600 mt-2">An extension of the CONSORT 2025 statement for nutrition trials</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center h-16">
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4" id="nav-links">
+                            <a href="#checklist" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Checklist</a>
+                            <a href="#how-to-use" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">How to Use</a>
+                            <a href="#background" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Background</a>
+                            <a href="#events" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Events/Webinars</a>
+                            <a href="#training" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Training Resources</a>
+                            <a href="#publications" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Publications</a>
+                            <a href="#team" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <!-- Checklist Page -->
+        <section id="checklist-page" class="page-content">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                 <div id="how-to-use-banner" class="bg-indigo-100 text-indigo-800 p-4 rounded-md mb-8 text-center cursor-pointer hover:bg-indigo-200 transition">
+                    <p class="font-semibold">New to CONSORT-Nut? Click here for guidance on how to use this checklist.</p>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-4 text-center">CONSORT-Nut Fillable Checklist</h2>
+                <p class="text-center text-gray-600 mb-8">This checklist includes all CONSORT 2025 items and the CONSORT-Nut extensions. Fill in the page numbers from your manuscript for each item.</p>
+
+                <!-- Expand/Collapse all explanations -->
+                <div class="flex items-center justify-center mb-6">
+                    <button
+                    id="toggle-all-explanations-btn"
+                    type="button"
+                    class="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-md hover:bg-gray-300 transition"
+                    >
+                    Expand all explanations
+                    </button>
+                </div>
+  
+                
+                <form id="checklist-form" class="space-y-8">
+                    <!-- Checklist items will be dynamically inserted here -->
+                </form>
+
+                <div class="mt-8 text-center">
+                    <button id="download-word-btn" class="bg-blue-600 text-white font-semibold px-8 py-3 rounded-md hover:bg-blue-700 transition">Download as Word Document</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Page -->
+        <section id="how-to-use-page" class="page-content">
+             <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-4">How to Use</h2>
+                <p class="text-lg">Using the CONSORT-nut Statement
+                    CONSORT-Nut is a reporting guideline designed to improve how nutrition trials are described in scientific publications. It helps researchers clearly and completely report key aspects of their study, making it easier for readers, reviewers, and editors to understand what was done and why.
+                    <br /><br />
+                    Authors should use CONSORT-Nut when writing the results of a nutrition trial. It may also be consulted when writing the protocol, extending corresponding <a href="https://www.consort-spirit.org/" target="_blank">SPIRIT statement</a> items where applicable. The checklist includes items that guide you in reporting important details, which improves transparency and completeness.
+                    <br /><br />
+                    CONSORT-nut is an extension of the <a href="https://www.consort-spirit.org/" target="_blank">CONSORT statement</a>, which is used for clinical trials. This means you should use both guidelines together when reporting nutrition trials. If CONSORT-Nut does not include specific instructions for a particular item, follow the general CONSORT guidance. The "Checklist" tab on this website provides a fillable version of the CONSORT statement with the CONSORT-Nut extension items for convenience.
+                    <br /><br />
+                    It is important to note that reporting guidelines like CONSORT-Nut are not tools for evaluating the quality of a study or its findings. They are meant to support clear and thorough reporting.
+                    <br /><br />           
+                    Many journals encourage or require authors to use reporting guidelines when submitting manuscripts. Authors may be asked to upload a completed checklist, indicating the page number where each item is addressed in the manuscript. This helps reviewers and editors quickly locate essential information.
+                    <br /><br />
+                    If you believe a checklist item does not apply to your study, do not leave it blank. Instead, explain why the item is not relevant. This adds transparency and helps readers understand what was and was not done in your research.
+                    </p>
+            </div>
+        </section>
+
+        <!-- Background Page -->
+        <section id="background-page" class="page-content">
+             <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-4">Background</h2>
+                <p class="text-lg">High-quality nutrition evidence is essential for effective public health policy and practice. While Randomized Controlled Trials (RCTs) are a robust design for establishing causality, nutrition trials have unique characteristics that create reporting challenges. Factors such as participants' background diets, difficulty in blinding, and defining appropriate control groups often lead to incomplete reporting.
+                <br /><br />
+                There is substantial evidence that nutrition trials are frequently reported inadequately , often with poorly defined outcomes and missing protocols or statistical analysis plans. This poor reporting is unethical, wastes resources, limits reproducibility and replicability, and can lead to erroneous conclusions by researchers and policymakers, ultimately causing public confusion and low trust in nutrition science.
+                <br /><br />
+                CONSORT-Nut was developed to address the expressed need from researchers and journal editors for specific guidance to improve the reporting of nutrition trials.
+                <br /><br />
+                <strong>How CONSORT-Nut Was Developed</strong>
+                <br /><br />
+                The CONSORT-Nut guideline is an extension of the CONSORT 2025 statement, developed by nutrition researchers and reporting guideline experts from the Federation of European Nutrition Societies (FENS) and the STAR-Nut group (EQUATOR). The guideline was created over a 4-year, multi-step iterative process involving broad consultation. This process began with a FENS working group drafting initial recommendations, which were then refined using feedback from the global nutrition community, journal editors, and a formal Delphi survey.
+                <br /><br />
+                The guideline was harmonized with the updated CONSORT 2025 statement and piloted with early career researchers to test and improve its clarity. The result is CONSORT-Nut, which includes 10 nutrition-specific recommendations intended to improve the completeness of reporting in nutrition trials.
+                <br /><br />
+                For full details on the development of CONSORT-Nut, please see the "Publications" tab.
+            </p>
+            </div>
+        </section>
+        
+        <!-- Other Pages -->
+        <section id="events-page" class="page-content"><div class="bg-white p-8 rounded-lg shadow-md"><h2 class="text-3xl font-bold mb-4">Events & Webinars</h2><p>Stay tuned for upcoming events and webinars where we will discuss the implementation and impact of CONSORT-Nut.</p></div></section>
+        <section id="training-page" class="page-content"><div class="bg-white p-8 rounded-lg shadow-md"><h2 class="text-3xl font-bold mb-4">Training Resources</h2><p>Find resources here to help you use the CONSORT-Nut checklist effectively in your research and manuscript preparation.</p></div></section>
+        <section id="publications-page" class="page-content">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-4">Publications</h2>
+                <p class="italic">
+                    Rigutto-Farebrother, J., Murphy, K. J., Minihane, A.-M., Shyam, S., Weaver, C., Calder, P. C., Khandpur, N., Tammam, J., Vorland, C. J. & Lachat, C. (2025). CONSORT-Nut: an extension of the CONSORT 2025 statement for reporting nutrition trials (manuscript in preparation). Preprint available at [placeholder for preprint link].
+                </p>
+            </div>
+        </section>
+        
+        <section id="team-page" class="page-content">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-6 text-center">Meet the Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Jessica Rigutto-Farebrother -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" style="object-position: 40% 10%;" src="https://i.imgur.com/zfebUnP.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Jessica Rigutto-Farebrother">
+                        <h3 class="text-xl font-bold">Jessica Rigutto-Farebrother</h3>
+                        <p class="text-gray-600">MPharm, MPH, Dr. sc. ETH</p>
+                        <p class="mt-2 text-sm">ETH Zürich & University of Notre Dame</p>
+                        <a href="https://iei.nd.edu/initiatives/global-center-for-the-development-of-the-whole-child/people/jessica-rigutto-farebrother" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Karen J Murphy -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://cdn.theconversation.com/avatars/311371/width238/image-20161025-28373-ue4gpj.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Karen J Murphy">
+                        <h3 class="text-xl font-bold">Karen J Murphy</h3>
+                        <p class="text-gray-600">PhD, MDiet, APD</p>
+                        <p class="mt-2 text-sm">University of South Australia</p>
+                        <a href="https://people.unisa.edu.au/karen.murphy" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Anne-Marie Minihane -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" style="object-position: 50% 20%;" src="https://research-portal.uea.ac.uk/files-asset/183311023/Anne_Marie_Minihane_1.jpg?w=320&f=webp" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Anne-Marie Minihane">
+                        <h3 class="text-xl font-bold">Anne-Marie Minihane</h3>
+                        <p class="text-gray-600">BSc, PhD</p>
+                        <p class="mt-2 text-sm">University of East Anglia</p>
+                        <a href="https://research-portal.uea.ac.uk/en/persons/anne-marie-minihane" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+                    
+                    <!-- Sangeetha Shyam -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" style="object-position: 50% 15%;" src="https://sciroi.net/wp-content/uploads/sites/2/2024/07/Sangeetha-S.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Sangeetha Shyam">
+                        <h3 class="text-xl font-bold">Sangeetha Shyam</h3>
+                        <p class="text-gray-600">PhD</p>
+                        <p class="mt-2 text-sm">Rovira i Virgili University, Spain</p>
+                        <a href="https://sciroi.net/person/sangeetha-shyam/" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+                    
+                    <!-- Connie Weaver -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://ens.sdsu.edu/_resources/images/directory-photos/weaver-connie.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Connie Weaver">
+                        <h3 class="text-xl font-bold">Connie Weaver</h3>
+                        <p class="text-gray-600">PhD</p>
+                        <p class="mt-2 text-sm">San Diego State University</p>
+                        <a href="https://ens.sdsu.edu/people/faculty/weaver-connie" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Philip C. Calder -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://www.southampton.ac.uk/sites/default/files/styles/max_1300x1300/public/staff/pcc-97219.jpg.webp?itok=2B9guXIu" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Philip C. Calder">
+                        <h3 class="text-xl font-bold">Philip C. Calder</h3>
+                        <p class="text-gray-600">PhD, DPhil</p>
+                        <p class="mt-2 text-sm">University of Southampton</p>
+                        <a href="https://www.southampton.ac.uk/people/5x2d7j/professor-philip-calder" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Neha Khandpur -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://www.vcard.wur.nl/WebServices/GetMedia.ashx?id=108856" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Neha Khandpur">
+                        <h3 class="text-xl font-bold">Neha Khandpur</h3>
+                        <p class="text-gray-600">ScD</p>
+                        <p class="mt-2 text-sm">Wageningen University & Research</p>
+                        <a href="https://www.wur.nl/en/persons/neha-khandpur.htm" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+                    
+                    <!-- Jonathan Tammam -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://media-cdn.brookes.ac.uk/mediacontainer/medialibraries/oxfordbrookes/profile-images/staff/hls/shssw/n-z/tammam-jonathan-p0089089-small.jpg?width=256&height=256&ext=.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Jonathan Tammam">
+                        <h3 class="text-xl font-bold">Jonathan Tammam</h3>
+                        <p class="text-gray-600">PhD, RD, RNutr</p>
+                        <p class="mt-2 text-sm">Oxford Brookes University</p>
+                        <a href="https://www.brookes.ac.uk/profiles/staff/jonathan-tammam/" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Colby J Vorland -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://publichealth.indiana.edu/images/profile/cvorlandProfile.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Colby J Vorland">
+                        <h3 class="text-xl font-bold">Colby J Vorland</h3>
+                        <p class="text-gray-600">PhD</p>
+                        <p class="mt-2 text-sm">Indiana University</p>
+                        <a href="https://publichealth.indiana.edu/about/directory/Colby-Vorland-cvorland.html" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                    <!-- Carl Lachat -->
+                    <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                        <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://i.imgur.com/sqt6agB.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Carl Lachat">                        <h3 class="text-xl font-bold">Carl Lachat</h3>
+                        <p class="text-gray-600">PhD</p>
+                        <p class="mt-2 text-sm">Ghent University</p>
+                        <a href="https://research.ugent.be/web/person/carl-lachat-0/en" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+        </div>
+    </footer>
+
+    <script>
+        // CONSORT + CONSORT-Nut checklist — single toggle w/ side-by-side panes
+        (function () {
+          document.addEventListener('DOMContentLoaded', function () {
+            // ===== DATA ==============================================================
+            // Long-form CONSORT text is included for 1a–1b below; add more anytime by
+            // filling 'consort_explanation' and 'consort_examples' for other items.
+            const checklistData = [
+              {
+                group: 'Title and Abstract',
+                items: [
+                  {
+                    id: '1a',
+                    title: 'Title and structured abstract',
+                    text: 'Identification as a randomized trial',
+                    // CONSORT (long-form example)
+                    consort_examples: `
+                      <p>“Efficacy and Safety of Early Administration of 4-Factor Prothrombin Complex Concentrate in Patients With Trauma at Risk of Massive Transfusion:
+                      The PROCOAG Randomized Clinical Trial.”</p>
+                    `,
+                    consort_explanation: `
+                      <p>Use the word <em>randomized</em> (or <em>randomised</em>) in the title so indexers and readers can readily identify the report as a randomized trial.
+                      If authors don’t explicitly say so, indexers might not classify it correctly.</p>
+                    `,
+                    // CONSORT-Nut
+                    nut_ext: 'Identification of the dietary comparator, where possible.',
+                    nut_explanation: `
+                      <p>In addition to stating ‘randomized trial’, include details of the nutrient/bioactive(s), food/food group, dietary pattern or eating-behaviour
+                      intervention. Where possible, name the dietary comparator, as it is critical for interpretation and policy translation.</p>
+                    `,
+                    nut_examples: `
+                      <p>“High-dose vitamin D versus placebo to prevent complications in COVID-19 patients: Multicentre randomized controlled clinical trial” (Mariani et al., 2022).</p>
+                      <p>“Impact of a Low-Carbohydrate Compared with Low-Fat Breakfast on Blood Glucose Control in Type 2 Diabetes: A Randomized Trial” (Oliveira et al., 2023).</p>
+                      <p>“Low versus standard calorie and protein feeding in ventilated adults with shock: a randomised, controlled, multicentre, open-label, parallel-group trial” (Reignier et al., 2023).</p>
+                    `
+                  },
+                  {
+                    id: '1b',
+                    title: 'Title and structured abstract',
+                    text: 'Structured summary of trial design, methods, results, and conclusions',
+                    // CONSORT (long-form example)
+                    consort_explanation: `
+                      <p>Abstracts should be transparent and sufficiently detailed to stand alone and accurately reflect the full article. Avoid spin and selective
+                      reporting (e.g., highlighting only significant secondary outcomes). Use structured headings; include key details of design, conduct, analysis, and interpretation.</p>
+                    `,
+                    // CONSORT-Nut
+                    nut_ext: 'Describe the bioactive/nutrient, food/food group, dietary pattern or behaviour intervention and comparator.',
+                    nut_explanation: `
+                      <p>As space allows, specify nutrient (and chemical form if relevant), food(s) or dietary pattern, and the comparator (including “usual care”
+                      or habitual diet). If diet/behaviour outcomes are primary, name the measurement methods.</p>
+                    `,
+                    nut_examples: `
+                      <p>“We randomly assigned participants to receive 1000 mg of elemental calcium as calcium carbonate with 400 IU of vitamin D3 daily or placebo” (Jackson et al., 2006).</p>
+                      <p>“In a multicenter trial in Spain, we assigned 7447 participants … to one of three diets: Mediterranean + olive oil, Mediterranean + nuts, or a control low-fat advice diet …” (Estruch et al., 2018).</p>
+                      <p>“Newly diagnosed patients with breast cancer (N = 173) … randomized to a year-long nutrition and exercise intervention vs usual care” (Puklin et al., 2024).</p>
+                    `
+                  }
+                ]
+              },
+              {
+                group: 'Open Science',
+                items: [
+                  {
+                    id: '2',
+                    title: 'Trial registration',
+                    text: 'Name of trial registry, identifying number (with URL) and date of registration',
+                    consort_explanation: `
+                      <p>Prospective registration deters non-publication and selective outcome reporting. Report the registry name, identifier, date, and—ideally—whether results are posted on the registry.</p>
+                    `
+                  },
+                  {
+                    id: '3',
+                    title: 'Protocol and statistical analysis plan',
+                    text: 'Where the trial protocol and statistical analysis plan can be accessed',
+                    consort_explanation: `
+                      <p>Provide access to the full protocol and SAP (e.g., repository or journal supplement) and note timing of sign-off versus trial milestones; report any amendments with rationale and timing.</p>
+                    `
+                  },
+                  {
+                    id: '4',
+                    title: 'Data sharing',
+                    text: 'Where and how individual de-identified participant data, code, and materials can be accessed',
+                    consort_explanation: `
+                      <p>State what will be shared (IPD, dictionary, code, materials), where, when, conditions/embargo, and any access process consistent with consent, privacy, and governance.</p>
+                    `
+                  },
+                  {
+                    id: '5a',
+                    title: 'Funding and role of funders',
+                    text: 'Sources of funding/other support and the funders’ role in design, conduct, analysis, and reporting',
+                    consort_explanation: `
+                      <p>List all funders/support and precisely describe roles and safeguards against funder influence.</p>
+                    `
+                  },
+                  {
+                    id: '5b',
+                    title: 'Conflicts of interest',
+                    text: 'Financial and other conflicts of interest of manuscript authors',
+                    consort_explanation: `
+                      <p>Disclose financial and non-financial COIs for all authors; be specific (e.g., grants, consulting, stock, advisory roles). Incomplete/unclear disclosure is common—be explicit.</p>
+                    `,
+                    nut_examples: `
+                      <p>Long-form COI example with industry ties, personal and family interests, and advisory roles (Jenkins et al., 2022), illustrating comprehensive disclosure in nutrition.</p>
+                    `,
+                    nut_explanation: `
+                      <p>COIs in nutrition extend beyond industry links to personal beliefs/practices and incentives. CONSORT 2025 defines COI as circumstances risking undue influence on judgment. Declare both financial and personal dietary biases where relevant.</p>
+                    `
+                  }
+                ]
+              },
+              {
+                group: 'Introduction',
+                items: [
+                  {
+                    id: '6',
+                    title: 'Background and rationale',
+                    text: 'Scientific background and rationale',
+                    consort_explanation: `
+                      <p>Justify the need for the trial (ideally citing a systematic review), the comparator choice, and mechanisms plausibly linking intervention to outcomes; state equipoise.</p>
+                    `,
+                    nut_ext: 'Contextualize within dietary recommendations and background intake/status; define PICO clearly.',
+                    nut_explanation: `
+                      <p>Describe habitual intake/status in the target population and why the chosen population is appropriate; responsiveness may differ by baseline diet or status.</p>
+                    `,
+                    nut_examples: `<p>Examples provided in DASH, VITAL, and national guideline contexts.</p>`
+                  },
+                  { id: '7', title: 'Objectives', text: 'Specific objectives related to benefits and harms',
+                    consort_explanation: `<p>State a neutral primary objective (superiority/non-inferiority/equivalence; pilot/feasibility if relevant); align with registry/protocol.</p>` }
+                ]
+              },
+              {
+                group: 'Methods',
+                items: [
+                  {
+                    id: '8',
+                    title: 'Patient and public involvement',
+                    text: 'Details of patient or public involvement in design, conduct, and reporting',
+                    consort_explanation: `<p>Report whether/how PPI contributed (or state none and why); GRIPP2 can guide reporting.</p>`,
+                    nut_explanation: `<p>For diet/eating-behaviour interventions, note cultural appropriateness, burden (e.g., food diaries), and dissemination to the public.</p>`,
+                    nut_examples: `<p>Examples (McClelland 2024; Whatnall 2022) describing GRIPP2-aligned PPI roles.</p>`
+                  },
+                  {
+                    id: '9',
+                    title: 'Trial design',
+                    text: 'Design (parallel, crossover, allocation ratio) and framework (superiority, equivalence, non-inferiority, exploratory)',
+                    consort_explanation: `<p>State type, unit of randomisation, allocation ratio, and framework; explain less common designs.</p>`,
+                    nut_ext: 'Explain how design answers the nutrition question and why duration suits the outcomes.',
+                    nut_explanation: `<p>Duration should match biology (e.g., BMD needs ≥12 months; triglycerides can change by 4–8 weeks). Address carryover in crossovers and refer to CONSORT-crossover.</p>`
+                  },
+                  { id: '10', title: 'Changes to trial protocol', text: 'Important changes after commencement, with reasons',
+                    consort_explanation: `<p>Describe what changed, when, why, and whether pre-planned (adaptive) or post hoc.</p>` },
+                  {
+                    id: '11',
+                    title: 'Trial setting',
+                    text: 'Settings and locations (e.g., community, hospital, countries/sites)',
+                    consort_explanation: `<p>Report number/type of sites, country, and care context to support generalisability.</p>`,
+                    nut_explanation: `<p>Specify whether meals were supervised/domiciled vs packed out; give examples for controlled feeding units.</p>`
+                  },
+                  {
+                    id: '12a',
+                    title: 'Eligibility criteria',
+                    text: 'Eligibility criteria for participants',
+                    nut_ext: 'Target population and dietary/physiological characteristics, including baseline nutritional status when relevant.'
+                  },
+                  { id: '12b', title: 'Eligibility criteria', text: 'Eligibility criteria for sites and individuals delivering the interventions',
+                    consort_explanation: `<p>Report site/provider volume/qualifications if applicable—these can affect outcomes.</p>` },
+                  {
+                    id: '13',
+                    title: 'Intervention and comparator',
+                    text: 'Describe sufficiently to allow replication; provide where manuals/materials can be accessed',
+                    consort_explanation: `<p>Detail components, timing, materials, tailoring, adherence, fidelity, and (if applicable) placebo/“usual care”. Consider TIDieR/TIDieR-Placebo.</p>`,
+                    nut_ext: `
+                      <ul class="nut-extension-list">
+                        <li>(i) Dietary comparators and whether matched on energy/nutrients/bioactives</li>
+                        <li>(ii) Cultural appropriateness</li>
+                        <li>(iii) Dose/formulation, prep, storage, stability, exposure/biomarkers; or behaviour protocol development</li>
+                        <li>(iv) Background diet assessment</li>
+                      </ul>
+                    `,
+                    nut_explanation: `<p>Comparator description is critical in diet pattern/macronutrient substitution trials; background status often moderates effects.</p>`,
+                    nut_examples: `<p>Examples from Weaver & Hodges 2021; Hodges 2023; Jennings 2024.</p>`
+                  },
+                  {
+                    id: '14',
+                    title: 'Outcomes',
+                    text: 'Prespecified primary/secondary outcomes with variable, analysis metric, aggregation, and time point',
+                    consort_explanation: `<p>Completely define outcomes; align with protocol/registry; consider core outcome sets; specify primary time point.</p>`,
+                    nut_ext: 'Report adherence, acceptability, and tolerance where relevant.',
+                    nut_examples: `<p>Acceptability/tolerance examples (Jennings 2024; Ko 2024; Lean 2018).</p>`
+                  },
+                  { id: '15', title: 'Harms', text: 'How harms were defined and assessed',
+                    consort_explanation: `<p>Define harms, collection methods (systematic/non-systematic), coding/grading/grouping; consult CONSORT-Harms (2022).</p>` },
+                  { id: '16a', title: 'Sample size', text: 'How sample size was determined, including assumptions',
+                    consort_explanation: `<p>State outcome, target difference, SD/event rates, α, power, allocation ratio, inflation for attrition, formula/software, sensitivity; note design-specific needs.</p>` },
+                  { id: '16b', title: 'Sample size', text: 'Interim analyses and stopping guidelines',
+                    consort_explanation: `<p>Report timing, DMC/DSMB role, stopping boundaries/functions (e.g., O’Brien–Fleming), and whether pre-specified.</p>` },
+                  { id: '17a', title: 'Sequence generation', subheader: 'Randomization', text: 'Who generated the sequence and the method used',
+                    consort_explanation: `<p>Specify generator and method (e.g., computer RNG, table); avoid non-random methods.</p>` },
+                  { id: '17b', title: 'Sequence generation', text: 'Type of randomization and any restriction (stratification, blocking, block size)',
+                    consort_explanation: `<p>State if simple; else describe blocks (sizes/random variation), strata, or minimisation (and random element).</p>` },
+                  { id: '18', title: 'Allocation concealment mechanism', text: 'Mechanism used (e.g., central system; SNOSE), and steps to conceal until assignment',
+                    consort_explanation: `<p>Detail concealment method (IWRS/IVRS, pharmacy, numbered containers, SNOSE) and safeguards.</p>` },
+                  { id: '19', title: 'Implementation', text: 'Whether enrolment/assignment personnel had access to the sequence',
+                    consort_explanation: `<p>Confirm separation of sequence generation/concealment from assignment; if not, explain safeguards.</p>` },
+                  { id: '20a', title: 'Blinding', subheader: 'Blinding', text: 'Who was blinded (participants, providers, assessors, analysts)',
+                    consort_explanation: `<p>Avoid ambiguous terms (e.g., “double-blind”); list exactly who was blinded.</p>` },
+                  { id: '20b', title: 'Blinding', text: 'If blinded, how achieved and similarity of interventions',
+                    consort_explanation: `<p>Describe matching (appearance, taste, packaging) and unmasking procedures.</p>` }
+                ]
+              },
+              {
+                group: 'Results',
+                items: [
+                  { id: '22a', title: 'Participant flow including flow diagram', text: 'Numbers randomized, received intervention, and analysed',
+                    consort_explanation: `<p>Provide CONSORT flow diagram and numbers per group.</p>` },
+                  { id: '22b', title: 'Participant flow including flow diagram', text: 'Losses and exclusions after randomization, with reasons' },
+                  { id: '23a', title: 'Recruitment', text: 'Dates for recruitment and follow-up',
+                    consort_explanation: `<p>Chronology helps interpret recruitment rate and context (seasonality, policy changes), especially relevant in nutrition.</p>` },
+                  { id: '23b', title: 'Recruitment', text: 'Why trial ended or was stopped (if relevant)' },
+                  { id: '24a', title: 'Intervention and comparator delivery', text: 'Delivery as actually administered; who delivered; adherence; fidelity',
+                    consort_explanation: `<p>Report fidelity and adherence measures; who delivered and how.</p>` },
+                  { id: '24b', title: 'Intervention and comparator delivery', text: 'Concomitant care received during the trial',
+                    consort_explanation: `<p>Concomitant care can bias effects; report per group.</p>` },
+                  { id: '25', title: 'Baseline data', text: 'Baseline demographic and clinical characteristics table',
+                    consort_explanation: `<p>Include diet/status markers likely to modify effect in nutrition trials.</p>` },
+                  { id: '26', title: 'Numbers analysed, outcomes and estimation', text: 'For each outcome: N analysed; N with data; results; effect size with precision; absolute + relative for binary outcomes' },
+                  { id: '27', title: 'Harms', text: 'All harms or unintended events in each group' },
+                  { id: '28', title: 'Ancillary analyses', text: 'Other analyses (subgroup/sensitivity), prespecified vs post hoc' }
+                ]
+              },
+              {
+                group: 'Discussion',
+                items: [
+                  {
+                    id: '29',
+                    title: 'Interpretation',
+                    text: 'Interpretation consistent with results, balancing benefits and harms, and considering other relevant evidence',
+                    consort_explanation: `<p>Balance benefits/harms versus prior evidence; be cautious with exploratory analyses; discuss generalisability.</p>`,
+                    nut_ext: `
+                      <ul class="nut-extension-list">
+                        <li>(i) Biological plausibility; role of background diet/status and moderators</li>
+                        <li>(ii) Dietary practices, socio-cultural appropriateness, environmental impact, policy context</li>
+                        <li>(iii) Statistical vs clinical relevance for practice/guidelines</li>
+                      </ul>
+                    `
+                  },
+                  { id: '30', title: 'Limitations', text: 'Limitations (biases, imprecision, multiplicity) and generalisability' }
+                ]
+              }
+            ];
+        
+            // ===== RENDERING =========================================================
+            const checklistForm = document.getElementById('checklist-form');
+            if (!checklistForm) return;
+        
+            checklistData.forEach(groupData => {
+              const groupDiv = document.createElement('div');
+              groupDiv.className = 'checklist-group';
+        
+              const groupTitle = document.createElement('h3');
+              groupTitle.className = 'text-2xl font-semibold mb-4 p-4 bg-gray-100 rounded-lg';
+              groupTitle.textContent = groupData.group;
+              groupDiv.appendChild(groupTitle);
+        
+              const itemsContainer = document.createElement('div');
+              itemsContainer.className = 'space-y-4';
+        
+              groupData.items.forEach(item => {
+                if (item.subheader) {
+                  const subheader = document.createElement('h4');
+                  subheader.className = 'text-xl font-semibold pt-4';
+                  subheader.textContent = item.subheader;
+                  itemsContainer.appendChild(subheader);
+                }
+        
+                const hasConsort = !!(item.consort_explanation || item.consort_examples);
+                const hasNut = !!(item.nut_explanation || item.nut_examples);
+                const hasAny = hasConsort || hasNut;
+        
+                // Purple summary chip for CONSORT-Nut extension (kept)
+                const nutBox = item.nut_ext
+                  ? `<div class="text-purple-800 bg-purple-50 border border-purple-200 p-3 rounded-md mt-2">
+                       <strong>CONSORT-Nut Extension:</strong> ${item.nut_ext}
+                     </div>`
+                  : '';
+        
+                // Single combined expandable panel with side-by-side panes
+                const combinedPanel = hasAny ? `
+                  <button type="button"
+                          class="toggle-explanation-btn w-full p-2 mt-3 bg-gray-200 text-gray-800 font-semibold rounded-md text-center hover:bg-gray-300 transition">
+                    Show explanations &amp; examples
+                  </button>
+                  <div class="explanation-content combined mt-2 p-4 bg-gray-50 rounded-md border" style="display:none;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div class="rounded-md border border-teal-200 bg-teal-50 p-3">
+                        <h5 class="font-semibold text-teal-800">CONSORT</h5>
+                        ${ item.consort_explanation
+                            ? `<div class="text-sm text-teal-900 mt-2">${item.consort_explanation}</div>`
+                            : `<p class="text-sm italic text-teal-800 mt-2">No CONSORT notes provided for this item.</p>`}
+                        ${ item.consort_examples
+                            ? `<h6 class="font-medium text-teal-800 mt-3">Examples</h6><div class="text-sm text-teal-900 mt-1">${item.consort_examples}</div>`
+                            : '' }
+                      </div>
+                      <div class="rounded-md border border-purple-200 bg-purple-50 p-3">
+                        <h5 class="font-semibold text-purple-800">CONSORT-Nut</h5>
+                        ${ item.nut_explanation
+                            ? `<div class="text-sm text-purple-900 mt-2">${item.nut_explanation}</div>`
+                            : `<p class="text-sm italic text-purple-800 mt-2">No CONSORT-Nut notes provided for this item.</p>`}
+                        ${ item.nut_examples
+                            ? `<h6 class="font-medium text-purple-800 mt-3">Examples</h6><div class="text-sm text-purple-900 mt-1">${item.nut_examples}</div>`
+                            : '' }
+                      </div>
+                    </div>
+                  </div>
+                ` : '';
+        
+                const itemHtml = `
+                  <div class="py-4 border-b">
+                    <div class="flex justify-between items-start gap-6">
+                      <div class="grow">
+                        <h4 class="font-semibold text-lg">${item.id}. ${item.title}</h4>
+                        ${item.text ? `<p class="text-gray-700 mt-1"><span class="font-medium">CONSORT (core):</span> ${item.text}</p>` : ''}
+                        ${nutBox}
+                      </div>
+                      <div class="shrink-0 text-right">
+                        <label for="item${item.id}_page" class="text-sm font-medium text-gray-700">Page # (or N/A):</label>
+                        <input type="text" id="item${item.id}_page" class="w-24 mt-1 p-2 border border-gray-300 rounded-md shadow-sm">
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <label for="item${item.id}_notes" class="text-sm font-medium text-gray-700">Notes:</label>
+                      <textarea id="item${item.id}_notes" class="w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm" rows="2"></textarea>
+                    </div>
+                    ${combinedPanel}
+                  </div>
+                `;
+        
+                itemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+              });
+        
+              groupDiv.appendChild(itemsContainer);
+              checklistForm.appendChild(groupDiv);
+            });
+        
+            // ===== NAV (guards so missing DOM doesn’t crash) =========================
+            const navLinksWrap = document.getElementById('nav-links');
+            const pages = document.querySelectorAll('.page-content');
+        
+            function showPage(hash) {
+              if (!pages || !pages.length) return;
+              const targetId = (hash ? hash.substring(1) : 'checklist') + '-page';
+              const targetPage = document.getElementById(targetId);
+              pages.forEach(page => page.classList.remove('active'));
+              (targetPage || document.getElementById('checklist-page'))?.classList.add('active');
+              if (navLinksWrap) {
+                const links = navLinksWrap.querySelectorAll('.nav-link');
+                links.forEach(link => {
+                  link.classList.remove('active-nav-link');
+                  if (link.getAttribute('href') === (hash || '#checklist')) link.classList.add('active-nav-link');
+                });
+              }
+            }
+        
+            const howToBanner = document.getElementById('how-to-use-banner');
+            if (howToBanner) {
+              howToBanner.addEventListener('click', () => {
+                const targetHash = '#how-to-use';
+                history.pushState(null, '', targetHash);
+                showPage(targetHash);
+              });
+            }
+        
+            if (navLinksWrap) {
+              navLinksWrap.addEventListener('click', function (e) {
+                const t = e.target;
+                if (t && t.classList && t.classList.contains('nav-link')) {
+                  e.preventDefault();
+                  const targetHash = t.getAttribute('href');
+                  history.pushState(null, '', targetHash);
+                  showPage(targetHash);
+                }
+              });
+            }
+        
+            window.addEventListener('popstate', function () {
+              showPage(window.location.hash);
+            });
+        
+            showPage(window.location.hash);
+        
+            // ===== TOGGLE (single button -> combined panel) ==========================
+            // ===== TOGGLE ALL (expand/collapse all combined panels) ==================
+            const toggleAllBtn = document.getElementById('toggle-all-explanations-btn');
+
+            function setAllExplanations(open) {
+            // Show/hide all panels
+            document.querySelectorAll('#checklist-form .explanation-content.combined').forEach(panel => {
+                panel.style.display = open ? 'block' : 'none';
+            });
+            // Sync each item's button label
+            document.querySelectorAll('#checklist-form .toggle-explanation-btn').forEach(btn => {
+                btn.textContent = (open ? 'Hide' : 'Show') + ' explanations & examples';
+            });
+            // Update the master button label
+            if (toggleAllBtn) {
+                toggleAllBtn.textContent = open ? 'Collapse all explanations' : 'Expand all explanations';
+            }
+            }
+
+            if (toggleAllBtn) {
+            toggleAllBtn.addEventListener('click', () => {
+                // If any panel is hidden, we'll open all; otherwise we'll close all
+                const anyHidden = Array.from(
+                document.querySelectorAll('#checklist-form .explanation-content.combined')
+                ).some(p => p.style.display === 'none' || p.style.display === '');
+                setAllExplanations(anyHidden);
+            });
+            }
+
+
+            checklistForm.addEventListener('click', function (e) {
+              const btn = e.target.closest('.toggle-explanation-btn');
+              if (!btn) return;
+              const panel = btn.nextElementSibling;
+              if (!panel || !panel.classList.contains('explanation-content')) return;
+              const isHidden = panel.style.display === 'none' || panel.style.display === '';
+              panel.style.display = isHidden ? 'block' : 'none';
+              btn.textContent = (isHidden ? 'Hide' : 'Show') + ' explanations & examples';
+            });
+        
+            // ===== LOCAL STORAGE (per day) ==========================================
+            const today = new Date().toISOString().slice(0, 10);
+            const storageKey = 'consortNutData_v2';
+        
+            function saveData() {
+              const formData = {};
+              checklistForm.querySelectorAll('input[type="text"], textarea').forEach(field => {
+                if (field.id) formData[field.id] = field.value;
+              });
+              localStorage.setItem(storageKey, JSON.stringify({ saveDate: today, formData }));
+            }
+        
+            function loadData() {
+              const saved = localStorage.getItem(storageKey);
+              if (!saved) return;
+              const parsed = JSON.parse(saved);
+              if (parsed.saveDate !== today) {
+                localStorage.removeItem(storageKey);
+                return;
+              }
+              Object.entries(parsed.formData || {}).forEach(([id, val]) => {
+                const el = document.getElementById(id);
+                if (el) el.value = val;
+              });
+            }
+        
+            loadData();
+            checklistForm.addEventListener('input', saveData);
+        
+            // ===== DOCX EXPORT (reads combined panel) ================================
+            const dlBtn = document.getElementById('download-word-btn');
+            if (dlBtn) {
+              dlBtn.addEventListener('click', function () {
+                let contentHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>CONSORT & CONSORT-Nut Checklist</title></head><body>';
+                contentHtml += '<h1>CONSORT & CONSORT-Nut Checklist Report</h1>';
+        
+                document.querySelectorAll('#checklist-form .checklist-group').forEach(group => {
+                  const groupTitle = group.querySelector('h3').innerText;
+                  contentHtml += `<h2>${groupTitle}</h2>`;
+        
+                  group.querySelectorAll('.py-4.border-b').forEach(itemContainer => {
+                    const itemTitle = itemContainer.querySelector('h4').innerText;
+                    const coreP = itemContainer.querySelector('p.text-gray-700');
+                    const coreText = coreP ? `<p>${coreP.innerHTML}</p>` : '';
+                    const nutBoxDiv = itemContainer.querySelector('.text-purple-800.bg-purple-50');
+                    const nutBox = nutBoxDiv ? `<div>${nutBoxDiv.innerHTML}</div>` : '';
+        
+                    const combined = itemContainer.querySelector('.explanation-content.combined');
+        
+                    const pageNumberInput = itemContainer.querySelector('input[type="text"]');
+                    const notesTextarea = itemContainer.querySelector('textarea');
+                    const pageNumber = pageNumberInput ? pageNumberInput.value : 'N/A';
+                    const notes = notesTextarea ? notesTextarea.value.replace(/\n/g, '<br>') : '';
+        
+                    contentHtml += `<div style="margin-bottom:20px;border-bottom:1px solid #ccc;padding-bottom:10px;">`;
+                    contentHtml += `<h4><b>${itemTitle}</b></h4>`;
+                    // CONSORT core text
+                    contentHtml += coreText;
+                    // Nut chip
+                    contentHtml += nutBox;
+                    // Combined panel content (both CONSORT & CONSORT-Nut)
+                    if (combined) contentHtml += `<div>${combined.innerHTML}</div>`;
+                    // Page and notes
+                    contentHtml += `<p><b>Reported on Page #:</b> ${pageNumber}</p>`;
+                    if (notes.trim() !== '') contentHtml += `<p><b>Notes:</b><br>${notes}</p>`;
+                    contentHtml += `</div>`;
+                  });
+                });
+        
+                contentHtml += '</body></html>';
+                try {
+                  var converted = htmlDocx.asBlob(contentHtml, { orientation: 'portrait', margins: { top: 720 } });
+                  saveAs(converted, 'CONSORT-Checklist-Report.docx');
+                } catch (e) {
+                  console.error('DOCX export failed:', e);
+                  alert('DOCX export failed. Check that htmlDocx and FileSaver libraries are loaded.');
+                }
+              });
+            }
+          });
+        })();
+        </script>
+        
+        
+        
+        
+
+</body>
+</html>
+
