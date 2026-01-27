@@ -22,9 +22,9 @@
       .fade-in { animation: fadeIn 0.3s ease-in-out; }
       @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-      /* Styling for hyperlinks in text */
-      a { color: #1d4ed8; text-decoration: underline; }
-      a:hover { color: #1e40af; }
+      /* Styling for hyperlinks in text content */
+      .page-content a:not(.bg-blue-600):not(.bg-indigo-600) { color: #2563eb; text-decoration: underline; }
+      .page-content a:not(.bg-blue-600):not(.bg-indigo-600):hover { color: #1d4ed8; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -58,7 +58,7 @@
             <div class="bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
                 <div class="bg-indigo-50 border-l-4 border-indigo-600 text-indigo-800 p-4 mb-8">
                     <p class="font-semibold">Interactive Checklist</p>
-                    <p class="text-sm">Use this tool to track reporting in your manuscript. Enter page numbers and notes, then download the completed document. Note: all references were removed for the online format. The CONSORT 2025 and CONSORT-Nut documents should be consulted for more details.</p>
+                    <p class="text-sm">Use this tool to track reporting completeness in your manuscript. For each of the manuscript items (#1a to #30), the original <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00672-5/fulltext" target="_blank">CONSORT 2025</a> 'Item' and <a href="#publications" class="nav-link">CONSORT-Nut</a> 'Extension' (#1a, 1b, #6, #9, #12a, #13, #14, #21d, #29) are listed. Both the 'Item' and 'Extension' should be reported. Enter page numbers and notes, then download the completed document. The <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)00672-5/fulltext" target="_blank">CONSORT 2025</a> and <a href="#publications" class="nav-link">CONSORT-Nut</a> documents should be consulted for more details.</p>
                 </div>
                 <div id="how-to-use-banner" class="bg-indigo-100 text-indigo-800 p-4 rounded-md mb-8 text-center cursor-pointer hover:bg-indigo-200 transition">
                   <p class="font-semibold">New to CONSORT-Nut? Click here for guidance on how to use this checklist.</p>
@@ -89,11 +89,11 @@
              <p class="text-lg">
                  CONSORT-Nut is a reporting guideline designed to improve how nutrition trials are described in scientific publications. It helps researchers clearly and completely report key aspects of their study, making it easier for readers, reviewers, and editors to understand what was done and why.
                  <br /><br />
-                 Authors should use CONSORT-Nut when writing the results of a nutrition trial. It may also be consulted when writing the protocol, extending corresponding <a href="https://www.consort-spirit.org/" target="_blank">SPIRIT statement</a> items where applicable. The checklist includes items that guide you in reporting important details, which improves transparency and completeness.
-                 <br /><br />
-                 CONSORT-Nut is an extension of the <a href="https://www.consort-spirit.org/" target="_blank">CONSORT statement</a>, which is used for clinical trials. This means you should use both guidelines together when reporting nutrition trials. If CONSORT-Nut does not include specific instructions for a particular item, follow the general CONSORT guidance. Complete additional guidance is available in the CONSORT-Nut publication (see Publications tab).
-                 <br /><br />
                  It is important to note that reporting guidelines like CONSORT-Nut are not tools for evaluating the quality of a study or its findings. They are meant to support clear and thorough reporting.
+                 <br /><br />
+                 Authors should use CONSORT-Nut when writing the results of a nutrition trial. It may also be consulted when designing a nutrition trial and writing the protocol, extending corresponding <a href="https://www.consort-spirit.org/" target="_blank">SPIRIT statement</a> items where applicable. The checklist includes items that guide you in reporting important details, which improves transparency and completeness.
+                 <br /><br />
+                 CONSORT-Nut is an extension of the <a href="https://www.consort-spirit.org/" target="_blank">CONSORT statement</a>, which is used for clinical trials. This means you should use both guidelines together when reporting nutrition trials: both the CONSORT 'Item' and the CONSORT-Nut 'Extension' should be addressed for items where an extension exists. Complete additional guidance is available in the CONSORT-Nut publication (see <a href="#publications" class="nav-link">Publications tab</a>).
                  <br /><br />          
                  Many journals encourage or require authors to use reporting guidelines when submitting manuscripts. We acknowledge that journals often have strict word count limitations, particularly for titles and abstracts. In such cases, authors should aim to fulfill CONSORT-Nut recommendations as fully as the word count allows. Authors may be asked to upload a completed checklist, indicating the page number where each item is addressed in the manuscript. This helps reviewers and editors quickly locate essential information.
                  <br /><br />
@@ -105,11 +105,11 @@
      <section id="background-page" class="page-content">
           <div class="bg-white p-8 rounded-lg shadow-md">
              <h2 class="text-3xl font-bold mb-4">Background</h2>
-             <p class="text-lg">High-quality nutrition evidence is essential for the development of dietary guidance, effective public health policy, practice guidelines, and inclusion in systematic reviews. While Randomized Controlled Trials (RCTs) are a robust design for establishing causality, nutrition trials have unique characteristics that create reporting challenges. Factors such as participants' background diets, difficulty in blinding, and defining appropriate control groups often lead to incomplete reporting.
+             <p class="text-lg">High-quality nutrition evidence is essential for the development of dietary guidance, effective public health policy, practice guidelines, and inclusion in systematic reviews. While Randomized Controlled Trials (RCTs) are a robust design for establishing causality, nutrition trials have unique characteristics that create reporting challenges such as participants' background diets, difficulty in blinding, and defining appropriate control groups.
              <br /><br />
              There is substantial evidence that nutrition trials are frequently reported inadequately, often with poorly defined outcomes and missing protocols or statistical analysis plans. This poor reporting is unethical, wastes resources, limits reproducibility and replicability, and can lead to erroneous conclusions by researchers and policymakers, ultimately causing public confusion and low trust in nutrition science.
              <br /><br />
-             CONSORT-Nut was developed to address the expressed need from researchers and journal editors for specific guidance to improve the reporting of nutrition trials.
+             CONSORT-Nut was developed to address the expressed need from researchers and journal editors for specific guidance to improve the reporting of nutrition trials. This effort is part of a wider movement to improve scientific reporting, coordinated through the <a href="https://www.equator-network.org/" target="_blank">EQUATOR Network</a>.
              <br /><br />
              <strong>How CONSORT-Nut Was Developed</strong>
              <br /><br />
@@ -117,7 +117,7 @@
              <br /><br />
              The guideline was harmonized with the updated CONSORT 2025 statement and piloted with early career researchers to test and improve its clarity. The result is CONSORT-Nut, which includes 9 nutrition-specific recommendations intended to improve the completeness of reporting in nutrition trials.
              <br /><br />
-             For full details on the development of CONSORT-Nut, please see the "Publications" tab.
+             For full details on the development of CONSORT-Nut, please see the <a href="#publications" class="nav-link">"Publications" tab</a>.
          </p>
          </div>
      </section>
@@ -126,6 +126,9 @@
          <div class="bg-white p-8 rounded-lg shadow-md">
              <h2 class="text-3xl font-bold mb-4">Events & Webinars</h2>
              <p>Stay tuned for upcoming events and webinars where we will discuss the implementation and impact of CONSORT-Nut.</p>
+             <div class="bg-gray-100 border border-gray-300 rounded-lg p-4 mt-6">
+                 <p class="text-gray-600 italic">Event sign-up functionality coming soon.</p>
+             </div>
          </div>
      </section>
  
@@ -179,6 +182,18 @@
         </p><br />
         <p class="">
             Prentice, R. L., Aragaki, A. K., Van Horn, L., Thomson, C. A., Beresford, S. A., Robinson, J., Snetselaar, L., Anderson, G. L., Manson, J. E., Allison, M. A., Rossouw, J. E., & Howard, B. V. (2017). <a href="https://doi.org/10.3945/ajcn.117.153270" target="_blank">Low-fat dietary pattern and cardiovascular disease: results from the Women's Health Initiative randomized controlled trial.</a> Am J Clin Nutr, 106(1), 35-43.
+        </p><br />
+        <p class="">
+            Manson, J. E., Cook, N. R., Lee, I.-M., Christen, W., Bassuk, S. S., Mora, S., Gibson, H., Gordon, D., Copeland, T., D'Agostino, D., Friedenberg, G., Ridge, C., Buber, V., Giovannucci, E. L., Willett, W. C., & Buring, J. E. (2019). <a href="https://doi.org/10.1056/NEJMoa1811403" target="_blank">Marine n-3 fatty acids and prevention of cardiovascular disease and cancer.</a> N Engl J Med, 380, 23-32.
+        </p><br />
+        <p class="">
+            de Kok, B., Toe, L. C., Hanley-Cook, G., Argaw, A., Ouédraogo, M., Compaoré, A., Kabore, K., & Lachat, C. (2022). <a href="https://doi.org/10.1371/journal.pmed.1004002" target="_blank">Prenatal fortified balanced energy-protein supplementation and birth outcomes in rural Burkina Faso: a randomized controlled efficacy trial.</a> PLoS Med, 19, e1004002.
+        </p><br />
+        <p class="">
+            Poston, L., Bell, R., Croker, H., Flynn, A. C., Godfrey, K. M., Goff, L., Hayes, L., Khazaezadeh, N., Nelson, S. M., Oteng-Ntim, E., Pasupathy, D., Patel, N., Robson, S. C., Sandall, J., Sanders, T. A. B., Sattar, N., Seed, P. T., Wardle, J., Whitworth, M. K., & Briley, A. L. (2015). <a href="https://doi.org/10.1016/S2213-8587(15)00227-2" target="_blank">Effect of a behavioural intervention in obese pregnant women (the UPBEAT study): a multicentre, randomised controlled trial.</a> Lancet Diabetes Endocrinol, 3, 767-777.
+        </p><br />
+        <p class="">
+            Suez, J., Cohen, Y., Valdés-Mas, R., Mor, U., Dori-Bachash, M., Federici, S., Zmora, N., Leshem, A., Heinemann, M., Liber, R., Chitrik, R., Rubin, E., & Elinav, E. (2022). <a href="https://doi.org/10.1016/j.cell.2022.07.016" target="_blank">Personalized microbiome-driven effects of non-nutritive sweeteners on human glucose tolerance.</a> Cell, 185, 3307-3328.
         </p><br />
          </div>
      </section>
@@ -239,7 +254,24 @@
                   <h3 class="text-xl font-bold">Philip C. Calder</h3>
                   <p class="text-gray-600">PhD, DPhil</p>
                   <p class="mt-2 text-sm">University of Southampton</p>
-                  <a href="https://www.southampton.ac.uk/people/5x2d7j/professor-philip-calder" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+                  <a href="https://www.southampton.ac.uk/people/5wzh2r/professor-philip-calder" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+              </div>
+
+              <!-- Mary Uyoga -->
+              <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                  <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://www.nwu.ac.za/sites/health-sciences.nwu.ac.za/files/files/staff/Mary%20Uyoga_2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Mary Uyoga">
+                  <h3 class="text-xl font-bold">Mary Uyoga</h3>
+                  <p class="text-gray-600">PhD</p>
+                  <p class="mt-2 text-sm">North-West University, South Africa</p>
+                  <a href="https://health-sciences.nwu.ac.za/cen/dr-mary-uyoga" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
+              </div>
+
+              <!-- Arnold William -->
+              <div class="bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                  <img class="w-48 h-48 rounded-full mx-auto mb-4 object-cover" src="https://i1.rgstatic.net/ii/profile.image/11431281714750791-1762381388778_Q128/Arnold-William-2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/256x256/EFEFEF/333333?text=Photo';" alt="Photo of Arnold William">
+                  <h3 class="text-xl font-bold">Arnold William</h3>
+                  <p class="mt-2 text-sm">Ifakara Health Institute, Tanzania</p>
+                  <a href="https://orcid.org/0009-0009-6615-695X" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">View Profile</a>
               </div>
 
               <!-- Neha Khandpur -->
@@ -278,6 +310,24 @@
               </div>
 
           </div>
+
+          <!-- Contact Information -->
+          <div class="mt-12 pt-8 border-t border-gray-200">
+              <h3 class="text-2xl font-bold mb-6 text-center">Contact Us</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                      <p class="font-semibold text-gray-800">Lead FENS Dissemination Working Group</p>
+                      <p class="text-gray-700">Prof. Karen Murphy</p>
+                      <a href="mailto:karen.murphy@adelaide.edu.au" class="text-blue-600 hover:text-blue-800">karen.murphy@adelaide.edu.au</a>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                      <p class="font-semibold text-gray-800">Lead FENS Working Group Development</p>
+                      <p class="text-gray-700">Dr. Jessica Rigutto</p>
+                      <a href="mailto:jessica.rigutto@hest.ethz.ch" class="text-blue-600 hover:text-blue-800">jessica.rigutto@hest.ethz.ch</a>
+                  </div>
+              </div>
+          </div>
+
       </div>
   </section>
 
